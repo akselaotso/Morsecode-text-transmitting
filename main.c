@@ -34,7 +34,7 @@ void SIGINT_signal_handler(int sig) {
         log_action("Parent encountered realloc error while processing SIGINT, sending SIGTERM to child..");
         kill(childPID, SIGTERM);
     } else {
-        printf("####-- %s -- |%c| --\n", currentMorseCode, morse_to_char(currentMorseCode, currentMorseCodeLength));
+        if (morse_to_char(currentMorseCode, currentMorseCodeLength) == '_') {kill(childPID, SIGUSR1); return;} /* Ignore \r (or other unknown char)*/
         recievedAnswer[recievedAnswerLength] = morse_to_char(currentMorseCode, currentMorseCodeLength);
         recievedAnswer[recievedAnswerLength + 1] = '\0';
         currentMorseCode[0] = '\0';

@@ -5,17 +5,17 @@ CC = cc
 CFLAGS = -O2 -g -Wall -pedantic
 LOGFILE = log_file.txt
 
-all: main
+all: $(APPLICATION)
 
-main: $(SRC_FILES) $(HEADER_FILES)
+$(APPLICATION): $(SRC_FILES) $(HEADER_FILES)
 	$(CC) $(CFLAGS) -o $(APPLICATION) $(SRC_FILES)
 
 clean:
 	rm -f $(APPLICATION) $(LOGFILE)
 
-valgrind:
-	valgrind --leak-check=full --show-leak-kinds=all ./$(APPLICATION) -
+valgrind: $(APPLICATION)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(APPLICATION) testfile1234
 
-run:
+run: $(APPLICATION)
 	./$(APPLICATION) testfile1234
 

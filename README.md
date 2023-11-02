@@ -8,3 +8,30 @@ The child program reads the specified file, if the specified filename is "-" std
 
 The parent program just recieves the signals, processes them and confirms it is ready to the child.
 
+The program ignores signals it can't desipher meaning characters not in the following list: ABCDEFGHIJLKMNOPQRSTUVWXYZ1234567890&'@():,=!.-+"?/\n
+
+Usage:
+To compile the program using the makefile: 
+```
+make 
+```
+
+To run the program with input testfile1234 and output stdout:
+```
+make run
+```
+
+To delete compiled program and log file:
+```
+make clean
+```
+
+To run default with valgrind:
+```
+make valgrind
+```
+
+Otherwise, after compiling with "make":
+```
+./morsecode.o <input file or '-' for stdin> <output file or '-' / empty for stdout>
+```
